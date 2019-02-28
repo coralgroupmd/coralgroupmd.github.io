@@ -930,6 +930,9 @@ Elements
 	text-transform: none;
 }
 
+.ttnone {
+	text-transform: none;
+}
 
 .badge.custom-badge.red {
 	background-color: #e9372e;
