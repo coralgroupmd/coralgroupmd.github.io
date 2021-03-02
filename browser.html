@@ -87,7 +87,7 @@ function browserTypeVersion() {
 }
   
       document.querySelector('#browser').addEventListener('click', event => {
-        let typeVer = browserTypeVersion()
+        let typeVer = browserTypeVersion() + ' --> ' + navigator.userAgent
 
         console.log('typeVer:',typeVer)
         document.querySelector("#typeVer").innerHTML = typeVer
