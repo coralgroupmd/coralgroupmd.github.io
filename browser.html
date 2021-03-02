@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+<meta name="viewport" content="width = device-width">
+
+<style>
+    /*button { 
+    color:#050; 
+    font-size: 1rem;
+    border-radius: 10px;
+     font: old 84% 'trebuchet ms',helvetica,sans-serif;  
+     background-color:#fed; 
+     border:1px solid;  
+     border-color: #696 #363 #363 #696;  
+}*/
+    button {
+        /*        display: inline-block;*/
+        border: none;
+        padding: 0.25rem 1rem;
+        margin: 0;
+        border-radius: 10px;
+        text-decoration: none;
+        background: #FF69ed;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 1rem;
+        /*        cursor: pointer;
+        text-align: center;
+        transition: background 250ms ease-in-out,
+            transform 150ms ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;*/
+    }
+
+    button:disabled,
+    button[disabled] {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+    }
+
+    /*
+
+    button:hover:not([enabled="disabled"]),
+    button:focus {
+        background: #0053ba;
+    }
+    */
+    button:focus {
+        outline: 1px solid #fff;
+        outline-offset: 0px;
+    }
+
+
+    button:active {
+        transform: scale(0.8);
+    }
+
+</style>
+
+
+<body>
+
+    <h1>Alert Browser Type Version</h1>
+    <h2 id="typeVer"> ... </h2>
+    <div class="btns bt">
+        <button id="browser">browser</button>
+    </div>
+    
+
+</body>
+<script>
+function browserTypeVersion() {
+    var ua= navigator.userAgent, tem, 
+    M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if(/trident/i.test(M[1])){
+        tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE '+(tem[1] || '');
+    }
+    if(M[1]=== 'Chrome'){
+        tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+        if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+    }
+    M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+    return M.join(' ');
+}
+  
+      document.querySelector('#browser').addEventListener('click', event => {
+        let typeVer = browserTypeVersion()
+
+        console.log('typeVer:',typeVer)
+        document.querySelector("#typeVer").innerHTML = typeVer
+                alert(typeVer)
+    });
+
+  </script>
+
+</html>
